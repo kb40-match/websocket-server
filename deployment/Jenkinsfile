@@ -31,7 +31,7 @@ podTemplate(containers: [
 	 		//git branch: 'main', url: 'https://github.com/happykube/hellonode.git'
 			// Java based on Spring Boot, branch : msa
 			// 여기에 자신의 gitlab repository의 msa branch로 바꾸세요.
-			git branch: 'main', url: 'https://github.com/kb40-match/matching.git'
+			git branch: 'main', url: 'https://github.com/kb40-match/websocket-server.git'
 		} 
 
 		//-- 환경변수 파일 읽어서 변수값 셋팅 
@@ -53,7 +53,6 @@ podTemplate(containers: [
 		def deployment = props["deployment"]
 		def config = props["config"]
 		def service = props["service"]
-		def ingress = props["ingress"]
 		def selector_key = props["selector_key"]
 		def selector_val = props["selector_val"]
 		def namespace = props["namespace"] 
@@ -126,7 +125,6 @@ podTemplate(containers: [
 					sh "kubectl apply -n ${namespace} -f ${deployment}"
 					sh "sleep 5"
 					sh "kubectl apply -n ${namespace} -f ${service}"
-					sh "kubectl apply -n ${namespace} -f ${ingress}"
 				}
 			}
             echo "**** FINISH ALL STAGES : SUCCESS"
