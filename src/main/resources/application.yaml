@@ -1,0 +1,33 @@
+server:
+  port: ${WEBSOCKET_SERVER_PORT:8082}
+  servlet:
+    context-path: ${WEBSOCKET_SERVER_CONTEXT_PATH:/websocket-server}
+
+spring:
+  application:
+    name: chatting
+
+# Kafka
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER:169.56.100.104}:${KAFKA_BROKER_PORT:30011}
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+    producer:
+      acks: 1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: ${CONSUMER_GROUP:chatting}
+      auto-offset-reset: latest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+#Parameter
+param:
+  kafka:
+    topic:
+      insert: chat_insert
+      update: chat_update
+  websocket:
+    allowed-origin: http://localhost:8080
