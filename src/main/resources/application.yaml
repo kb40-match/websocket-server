@@ -30,4 +30,7 @@ param:
       insert: chat_insert
       update: chat_update
   websocket:
-    allowed-origin: http://localhost:8080
+    #local
+    #allowed-origin: http://localhost:8080
+    #prod server
+    allowed-origin: http://matching.kbfg.kubepia.com/
